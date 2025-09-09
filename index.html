@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dijkstra Visualizer — University Project</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark">
+  <header>
+    <div class="brand">
+      <h1>Dijkstra's Algorithm Visualizer</h1>
+      <span class="sub">Interactive • Minimal • Teaching-focused</span>
+    </div>
+
+    <div class="top-controls">
+      <label class="toggle">
+        <input id="themeToggle" type="checkbox" />
+        <span>Light</span>
+      </label>
+      <button id="exportBtn" class="btn">Export Steps (Print/PDF)</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="left">
+      <div class="canvas-wrap">
+        <!-- Increased canvas size -->
+        <canvas id="graphCanvas" width="1200" height="720"></canvas>
+        <div class="canvas-hint">Click nodes to start/finish edges • Drag nodes to move</div>
+      </div>
+
+      <div class="controls">
+        <div class="control-row">
+          <button id="generateGraph" class="btn primary">Generate Graph</button>
+          <button id="runDijkstra" class="btn success">Run Dijkstra</button>
+          <button id="reset" class="btn">Reset</button>
+          <button id="clearEdges" class="btn">Clear Edges</button>
+          <!-- New delete buttons -->
+          <button id="deleteNodeBtn" class="btn danger">Delete Node</button>
+          <button id="deleteEdgeBtn" class="btn danger">Delete Edge</button>
+        </div>
+
+        <div class="control-row">
+          <label>Mode:
+            <select id="modeSelect">
+              <option value="move">Move / Select</option>
+              <option value="addNode">Add Node</option>
+              <option value="addEdge">Add Edge</option>
+            </select>
+          </label>
+
+          <label>Speed:
+            <input id="speed" type="range" min="0.25" max="2.0" step="0.25" value="1" />
+            <span id="speedLabel">Normal</span>
+          </label>
+        </div>
+
+        <div class="control-row small">
+          <label>Source:
+            <select id="sourceSelect"></select>
+          </label>
+          <label>Destination:
+            <select id="destSelect"></select>
+          </label>
+          <label><input id="pseudocodeToggle" type="checkbox" checked /> Show Pseudocode</label>
+        </div>
+
+        <div class="control-row">
+          <button id="quizBtn" class="btn">Take Mini Quiz</button>
+        </div>
+
+        <div class="progress-wrap">
+          <div id="progressBar" class="progress"><div id="progressFill"></div></div>
+          <small id="progressText">Idle</small>
+        </div>
+      </div>
+    </section>
+
+    <aside class="right">
+      <div id="pseudocodePanel" class="panel">
+        <h3>Pseudocode</h3>
+        <pre id="pseudocode">
+1. initialize distances[] = ∞, dist[source] = 0
+2. put all nodes into a priority set (or loop to find min)
+3. while set not empty:
+4.    u = node with smallest distance
+5.    mark u visited
+6.    for each neighbor v of u:
+7.       alt = dist[u] + weight(u,v)
+8.       if alt < dist[v]:
+9.          dist[v] = alt
+10.         prev[v] = u
+11. reconstruct shortest path from prev[]
+        </pre>
+      </div>
+
+      <div id="stepsPanel" class="panel">
+        <h3>Step-by-step explanation</h3>
+        <div id="steps" class="steps"></div>
+      </div>
+
+      <div class="panel small-info">
+        <h4>Algorithm Info</h4>
+        <p>Time complexity:<br /><strong id="timeComplexity">O((V+E) log V)</strong></p>
+        <p>Use the speed slider to slow down or speed up animation.</p>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <small>Designed for university submission — Dark minimal UI • Interactive learning</small>
+  </footer>
+
+  <!-- Quiz modal -->
+  <div id="quizModal" class="modal hidden">
+    <div class="modal-card">
+      <h3>Mini Quiz</h3>
+      <div id="quizContent"></div>
+      <div class="modal-actions">
+        <button id="submitQuiz" class="btn success">Submit</button>
+        <button id="closeQuiz" class="btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

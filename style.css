@@ -1,0 +1,65 @@
+:root{
+  --bg:#0b0f13; --panel:#0f1720; --muted:#9aa6b2; --accent:#58a6ff; --success:#2ea043;
+  --glass: rgba(255,255,255,0.03);
+}
+body{ margin:0; font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; color:#e6edf3; background:var(--bg); }
+header{ display:flex; justify-content:space-between; align-items:center; padding:18px 28px; background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent); border-bottom:1px solid rgba(255,255,255,0.03) }
+.brand h1{ margin:0; font-size:1.2rem; color:var(--accent) }
+.brand .sub{ display:block; font-size:0.8rem; color:var(--muted) }
+.top-controls{ display:flex; gap:10px; align-items:center }
+.btn{ background:var(--panel); color:var(--muted); border:1px solid rgba(255,255,255,0.03); padding:8px 12px; border-radius:8px; cursor:pointer; transition:all .18s ease; }
+.btn:hover{ transform:translateY(-3px); color:#fff }
+.btn.primary{ border-color: rgba(88,166,255,0.2); box-shadow: 0 6px 18px rgba(88,166,255,0.06) }
+.btn.success{ border-color: rgba(46,160,67,0.16); box-shadow: 0 6px 18px rgba(46,160,67,0.04) }
+.btn.danger{ border-color: rgba(255,70,70,0.3); color:#ff6b6b; box-shadow:0 6px 18px rgba(255,70,70,0.08) }
+.btn.danger:hover{ color:#fff; background:rgba(255,70,70,0.15) }
+
+main{ display:flex; gap:18px; padding:18px; align-items:flex-start }
+.left{ flex:1; display:flex; flex-direction:column; gap:14px }
+.canvas-wrap{ position:relative; border-radius:12px; background:linear-gradient(180deg,#0f1620,#0b1116); padding:14px; box-shadow: 0 10px 30px rgba(0,0,0,0.6) }
+canvas{ display:block; border-radius:8px; background: #0b0f13; width:100%; height:auto; box-shadow: 0 8px 30px rgba(0,0,0,0.6) }
+.canvas-hint{ position:absolute; right:14px; bottom:12px; font-size:12px; color:var(--muted) }
+
+.controls{ background:var(--panel); padding:12px; border-radius:10px; display:flex; flex-direction:column; gap:8px; border:1px solid rgba(255,255,255,0.03) }
+.control-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap }
+.control-row.small{ font-size:0.9rem; color:var(--muted) }
+label{ color:var(--muted) }
+select,input[type="range"]{ background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.03); padding:6px 8px; border-radius:6px }
+
+.right{ width:380px; display:flex; flex-direction:column; gap:12px }
+.panel{ background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03) }
+.panel h3{ margin:0 0 8px 0; color:var(--accent) }
+#pseudocode{ white-space:pre-wrap; font-family:monospace; color:var(--muted); margin:0 }
+#pseudocode .active{ background:linear-gradient(90deg, rgba(88,166,255,0.08), transparent); color:#fff }
+
+.steps{ max-height:280px; overflow:auto; font-size:0.95rem; line-height:1.4; color:var(--muted) }
+.step{ padding:8px; border-radius:6px; margin-bottom:6px; background:rgba(255,255,255,0.01) }
+
+.small-info p{ margin:6px 0; color:var(--muted) }
+
+footer{ text-align:center; padding:12px; color:var(--muted); font-size:0.85rem }
+
+/* progress */
+.progress-wrap{ margin-top:6px }
+.progress{ height:10px; width:100%; background: rgba(255,255,255,0.03); border-radius:999px; overflow:hidden; border:1px solid rgba(255,255,255,0.02) }
+#progressFill{ height:100%; width:0%; background:linear-gradient(90deg,var(--accent), #7ee0ff); transition:width 0.3s ease }
+
+/* pseudocode highlight style for JS-managed lines */
+.pseudocode-line{ padding:4px 6px; border-radius:6px; display:block; color:var(--muted) }
+
+/* Modal */
+.modal{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(2,6,23,0.6); z-index:40 }
+.hidden{ display:none }
+.modal-card{ background:var(--panel); padding:14px; border-radius:10px; width:380px; border:1px solid rgba(255,255,255,0.03) }
+.modal-actions{ display:flex; gap:8px; justify-content:flex-end; margin-top:10px }
+
+/* small responsive adjustments */
+@media (max-width:980px){
+  main{ flex-direction:column }
+  .right{ width:100% }
+  canvas{ max-width:100% }
+}
+
+/* Light theme override */
+body.light{ --bg:#f5f8fb; --panel:#ffffff; --muted:#213547; --accent:#0066ff; --success:#008f3e; color:#213547 }
+body.light canvas{ background:#fff }
